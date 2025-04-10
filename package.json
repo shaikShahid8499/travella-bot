@@ -23,7 +23,7 @@
     "react-router-dom": "^7.0.2",
     "styled-components": "^6.1.13",
     "tailwindcss": "^3.4.17",
-    "vercel": "^39.2.2"
+    "vercel": "^25.2.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.15.0",

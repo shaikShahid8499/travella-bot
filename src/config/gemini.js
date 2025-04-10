@@ -1,15 +1,28 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
-
-const genAI = new GoogleGenerativeAI("AIzaSyDm6npnf7quOL9Ri4u-qP2VkGVBlorI-b8");
-
 export const getGeminiResponse = async (prompt) => {
   try {
-    const model = genAI.getGenerativeModel({ model: "gemini-pro" });
-    const result = await model.generateContent(prompt);
-    const response = await result.response;
-    return response.text();
+    const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Authorization": "Bearer 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",
+        "Content-Type": "application/json",
+        "HTTP-Referer": "<YOUR_SITE_URL>", // Optional
+        "X-Title": "<YOUR_SITE_NAME>", // Optional
+      },
+      body: JSON.stringify({
+        model: "deepseek/deepseek-r1-distill-llama-70b:free",
+        messages: [
+          {
+            role: "user",
+            content: prompt,
+          },
+        ],
+      }),
+    });
+
+    const data = await response.json();
+    return data.choices?.[0]?.message?.content || "No response received";
   } catch (error) {
-    console.error("Gemini API Error:", error);
+    console.error("OpenRouter API Error:", error);
     throw error;
   }
-}; 
+};
