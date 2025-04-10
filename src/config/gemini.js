@@ -3,7 +3,7 @@ export const getGeminiResponse = async (prompt) => {
     const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
       method: "POST",
       headers: {
-        "Authorization": "Bearer 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",
+        "Authorization": "",
         "Content-Type": "application/json",
         "HTTP-Referer": "<YOUR_SITE_URL>", // Optional
         "X-Title": "<YOUR_SITE_NAME>", // Optional
